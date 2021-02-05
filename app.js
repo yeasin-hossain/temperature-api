@@ -5,26 +5,44 @@ const temperature = (city) => {
 	)
 		.then((res) => res.json())
 		.then((data) => {
-			console.log(data);
 			if (data.cod === 200) {
 				document.querySelector('#cityName').innerText = data.name;
 				document.querySelector('#temperature').innerText = (
 					data.main.temp - 273.15
 				).toFixed(2);
 				document.querySelector('#tempType').innerText = data.weather[0].main;
-				spinner.classList.add = 'bg-info';
-				console.log(spinner.classList);
-				spinner.classList.remove = 'd-block';
+				spin('none');
 			} else {
-				spinner.classList.remove = 'd-none';
+				spin('block');
+				// After 2 seconds spinner will die
+				setTimeout(() => {
+					spin('none');
+					alert(`Please Try Again, ${city} is not available`);
+				}, 2000);
 			}
 		});
 };
 
-const spinner = document.querySelector('#spinner');
+// Spinner
+const spin = (type) => {
+	const spinner = document.querySelector('#spinner');
+	switch (type) {
+		case 'block':
+			spinner.classList.add('d-block');
+			spinner.classList.remove('d-none');
+			break;
+		case 'none':
+			spinner.classList.remove('d-block');
+			spinner.classList.add('d-none');
+			break;
+	}
+};
+// Call api by click search
+const city = document.querySelector('#location__input');
 document.querySelector('#search__btn').addEventListener('click', () => {
-	const city = document.querySelector('#location__input').value;
-	temperature(city);
-	// console.log(city);
+	spin('block');
+	temperature(city.value);
 });
-// temperature('dhaka');
+
+// Initial temperature
+temperature('dhaka');
