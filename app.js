@@ -1,7 +1,7 @@
 const temperature = (city) => {
 	const apiKey = 'a8cf95efb7451a13f4010a4d4befb5d4';
 	fetch(
-		`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+		`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 	)
 		.then((res) => res.json())
 		.then((data) => {
