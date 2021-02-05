@@ -6,11 +6,25 @@ const temperature = (city) => {
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
-			document.querySelector('#cityName').innerText = data.name;
-			document.querySelector('#temperature').innerText = (
-				data.main.temp - 273.15
-			).toFixed(2);
-			document.querySelector('#tempType').innerText = data.weather[0].main;
+			if (data.cod === 200) {
+				document.querySelector('#cityName').innerText = data.name;
+				document.querySelector('#temperature').innerText = (
+					data.main.temp - 273.15
+				).toFixed(2);
+				document.querySelector('#tempType').innerText = data.weather[0].main;
+				spinner.classList.add = 'bg-info';
+				console.log(spinner.classList);
+				spinner.classList.remove = 'd-block';
+			} else {
+				spinner.classList.remove = 'd-none';
+			}
 		});
 };
-temperature('dhaka');
+
+const spinner = document.querySelector('#spinner');
+document.querySelector('#search__btn').addEventListener('click', () => {
+	const city = document.querySelector('#location__input').value;
+	temperature(city);
+	// console.log(city);
+});
+// temperature('dhaka');

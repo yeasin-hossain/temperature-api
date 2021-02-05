@@ -31,9 +31,12 @@
 						type="text"
 						class="form-control"
 						placeholder="Enter a location for Weather ..."
+						id="location__input"
 					/>
 					<div class="input-group-append">
-						<button type="button" class="btn btn-danger">Search</button>
+						<button type="button" class="btn btn-danger" id="search__btn">
+							Search
+						</button>
 					</div>
 				</div>
 			</form>
@@ -44,8 +47,8 @@
 				<h1 class="lead" id="tempType">Clouds</h1>
 			</div>
 		</div>
-		<div class="text-center">
-			<div class="spinner-border bg-warning d-none" role="status"></div>
+		<div class="text-center d-none" id="spinner">
+			<div class="spinner-border bg-warning" role="status"></div>
 		</div>
 		<script src="app.js"></script>
 	</body>
