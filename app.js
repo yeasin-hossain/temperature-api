@@ -11,6 +11,9 @@ const temperature = (city) => {
 					data.main.temp - 273.15
 				).toFixed(2);
 				document.querySelector('#tempType').innerText = data.weather[0].main;
+				document.querySelector(
+					'#icon'
+				).src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
 				spin('none');
 			} else {
 				spin('block');
